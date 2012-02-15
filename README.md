@@ -32,7 +32,7 @@ Dump an integer:
     $int = 42;
     Console::log($int); 
 
-Console:
+Output:
 
     42
 
@@ -41,7 +41,7 @@ Dump an array:
     $threeTimesTable = range(3, 30, 3);
     Console::log($threeTimesTable);
 
-Console:
+Output:
 
     Array
     (
@@ -56,18 +56,27 @@ Console:
         [8] => 27
         [9] => 30
     )
+    
+Dump a resource:
+
+    $resource = imagecreatetruecolor(600, 400);
+    Console:log($resource);
+    
+Output:
+
+    Resource id #1: gd
 
 You can optionally add a message:
 
     $name = 'darragh';
-    Console::log($name, 'Dumping variable $name to console!');
+    Console::log($name, 'Dumping $name variable to console!');
 
 Output:
 
-    :: Dumping name to console! ::
+    :: Dumping $name variable to console! ::
     'darragh'
 
-You can also toggle logging at any point in your script. This 
+You can also toggle output at any point in your script. This 
 is handy if you need to turn on/off logging while debugging:
 
     Console::on();

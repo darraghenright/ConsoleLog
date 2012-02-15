@@ -5,6 +5,8 @@ ini_set('display_errors', true);
 
 require_once __DIR__ . '/Console.php';
 
+// dummy class
+
 class Stub
 {
     private $id;
@@ -18,6 +20,8 @@ class Stub
     }
 }
 
+// a bunch of values
+
 $types = array(
     'null'           => null,
     'bool_true'      => true,
@@ -27,7 +31,7 @@ $types = array(
     'float_unsigned' => 1.0,
     'float_signed'   => -2.9,
     'str_single'     => 'hello',
-    'str_double'     => "\thello \n", 
+    'str_double'     => "\thello\n", 
     'array_std'      => array(1, 2, 3),
     'array_assoc'    => array('foo' => 'FOO', 'bar' => 'BAR', 'baz' => 1),
     'array_nested'   => array('foo' => 'FOO', 'two' => 2, 'nested' => range(1,3), 'hi'),
@@ -35,6 +39,8 @@ $types = array(
     'resource'       => imagecreatetruecolor(600, 400), // gd
 );
 
-foreach ($types as $k => $v) {
-    Console::log($v, $k);
+// dump values. open your developer toolbar!
+
+foreach ($types as $msg => $value) {
+    Console::log($value, $msg);
 }
