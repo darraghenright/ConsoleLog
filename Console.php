@@ -3,25 +3,48 @@
 /** 
  * Console logger
  *
+ * Wrap a PHP value in <script> elements and 
+ * output to WebKit's console with console.log()
+ * 
+ * Usage:
+ *
+ * Dump any type:
+ * <code>
+ *   $int = 42;
+ *   Console::log($int);
+ * </code>
+ *
+ * Optionally include a message:
+ * <code>
+ *   $str = 'foo';
+ *   Console::log($str, 'dumping $str on line ' . __LINE__);
+ * </code>
+ * 
+ * Toggle output anywhere in the script:
+ * <code>
+ *   Console::off(); // suppress output
+ *   Console::on();
+ * </code>
+ *
  * @author Darragh Enright <darraghenright@gmail.com>
  */
 class Console
 {
     /** 
-     * @static string $output
+     * @staticvar string $output The output string to dump to the console
      */ 
     private static $output = null;
     
     /** 
-     * @static string $output
+     * @staticvar string $output Toggle value for log output
      */ 
-    public static $isOn = true;
+    private static $isOn = true;
 
     /**
      * Format and dump output string to console
-     *
-     * @param mixed       $data
-     * @param string|null $message
+     *  
+     * @param mixed       $data    The value to dump to the console
+     * @param string|null $message An optional message to dump alongside the value
      */     
     public static function log($data, $message = null)
     {    
