@@ -18,16 +18,6 @@ class Stub
     }
 }
 
-$mysql = mysql_connect('localhost', '', '');
-
-if (is_resource($mysql)) {
-    echo get_resource_type($mysql);
-} else {
-    echo 'cannae connect';
-}
-
-var_dump(is_scalar(false));
-
 $types = array(
     'null'           => null,
     'bool_true'      => true,
@@ -42,7 +32,7 @@ $types = array(
     'array_assoc'    => array('foo' => 'FOO', 'bar' => 'BAR', 'baz' => 1),
     'array_nested'   => array('foo' => 'FOO', 'two' => 2, 'nested' => range(1,3), 'hi'),
     'object'         => new Stub("Hello, World!\n"),
-    'resource'       => $mysql,
+    'resource'       => imagecreatetruecolor(600, 400), // gd
 );
 
 foreach ($types as $k => $v) {

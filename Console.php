@@ -58,7 +58,7 @@ class Console
      * @param  mixed $data
      * @return string
      */ 
-    private static function formatData($data)
+    protected static function formatData($data)
     {
         return is_scalar($data) || is_null($data) ? var_export($data, true) : self::formatComposite($data);
     }
@@ -69,9 +69,20 @@ class Console
      * @param  mixed $data
      * @return string
      */
-    private static function formatComposite($data)
+    protected static function formatComposite($data)
     {
-        return !is_resource($data) ? print_r($data, true) : sprintf('%s: %s', print_r($data, true), get_resource_type($data));
+        return !is_resource($data) ? print_r($data, true) : self::formatResource($data);
+    }
+    
+    /** 
+     * Format a resource type
+     *
+     * @param  mixed $data
+     * @return string
+     */    
+    protected static function formatResource($data)
+    {
+        return sprintf('%s: %s', print_r($data, true), get_resource_type($data));
     }
     
     /**
@@ -79,7 +90,7 @@ class Console
      *
      * @param string $message
      */     
-    private static function addMessage($message)
+    protected static function addMessage($message)
     {
         self::$output = ($message) ? sprintf('console.log(":: %s ::");', $message) : null;
     }
@@ -89,15 +100,15 @@ class Console
      *
      * @param string $message
      */     
-    private static function addData($data)
+    protected static function addData($data)
     {
         self::$output .= sprintf('console.log(%s);', json_encode(self::formatData($data), JSON_NUMERIC_CHECK));
     }
 
     /** 
-     * Print javascript output 
+     * Print output as javascript
      */
-    private static function output()
+    protected static function output()
     {
         printf('<script type="text/javascript">%s</script>', self::$output);
     }
