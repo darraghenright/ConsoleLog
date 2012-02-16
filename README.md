@@ -3,9 +3,9 @@
 ##Description
 
 `Console` is a simple static console logger class for 
-dumping PHP variables to Webkit's console output.
+dumping PHP variables to the console of your WebKit browser.
 
-You should dump be able to dump all types:
+You should dump be able to dump any PHP type:
 
 * boolean
 * integer
@@ -21,7 +21,7 @@ Depending on the variable type `Console` will choose
 
 ##Usage
 
-Import the Console class into your script
+Import the Console class into your script:
 
     require_once __DIR__ . '/path/to/Console.php'
 
@@ -66,15 +66,21 @@ Output:
 
     Resource id #1: gd
 
-You can optionally add a message:
+You can optionally add a message; the originating 
+file name and line number are included in the output:
 
-    $name = 'darragh';
-    Console::log($name, 'Dumping $name variable to console!');
+    $now = new DateTime();
+    Console::log($name, 'Dumping DateTime object $now to console');
 
 Output:
 
-    :: Dumping $name variable to console! ::
-    'darragh'
+    [file.php:~49] Dumping DateTime object $now to console:
+    DateTime Object
+    (
+        [date] => 2012-02-16 20:55:15
+        [timezone_type] => 3
+        [timezone] => Europe/Dublin
+    )
 
 You can also toggle output at any point in your script. This 
 is handy if you need to turn on/off logging while debugging:

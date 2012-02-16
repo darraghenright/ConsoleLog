@@ -41,14 +41,9 @@ class Console
     private static $isOn = true;
 
     /**
-     * @staticvar string $file The log filename
+     * @staticvar string $file The file name and line number of the log call
      */
-    private static $file;
-
-    /**
-     * @staticvar integer $traceData The log line number
-     */
-    private static $line;
+    private static $traceData;
 
     /**
      * Format and dump output string to console
@@ -58,9 +53,7 @@ class Console
      */
     public static function log($data, $message = null)
     {   
-        if (null !== $message) {
-            self::setTraceData(debug_backtrace());
-        }
+        self::setTraceData(debug_backtrace());
 
         if (self::$isOn) {
             self::addMessage($message);
@@ -96,8 +89,10 @@ class Console
      */   
     public static function setTraceData(array $trace)
     {
-        self::$file = basename($trace[0]['file']);
-        self::$line = $trace[0]['line'];
+        $file = $trace[0]['file'];
+        $line = $trace[0]['line'];
+
+        self::$traceData = sprintf('[%s:~%d]', basename($file), $line);
     }
 
     /** 
@@ -140,7 +135,7 @@ class Console
      */     
     protected static function addMessage($message)
     {
-        self::$output = ($message) ? sprintf('console.log("[%s:~%d] %s:");', self::$file, self::$line, $message) : null;
+        self::$output = $message ? sprintf('console.log("%s %s:");', self::$traceData, $message) : null;
     }
 
     /** 

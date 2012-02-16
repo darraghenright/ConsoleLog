@@ -45,5 +45,3 @@ foreach ($types as $msg => $value) {
     Console::log($value, $msg);
 }
 
-$now = new DateTime();
-Console::log($now, 'Dumping DateTime object on line ' . __LINE__);
