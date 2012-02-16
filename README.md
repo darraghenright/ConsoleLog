@@ -70,7 +70,7 @@ You can optionally add a message; the originating
 file name and line number are included in the output:
 
     $now = new DateTime();
-    Console::log($name, 'Dumping DateTime object $now to console');
+    Console::log($now, 'Dumping DateTime object $now to console');
 
 Output:
 
