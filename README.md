@@ -25,7 +25,11 @@ Import the Console class into your script:
 
     require_once __DIR__ . '/path/to/Console.php'
 
-Use static method `Console::log()` to dump variable to console. Easy!
+Or, set up `.htaccess` in your dev environment to auto append the class to scripts:
+
+    php_value auto_prepend_file "/path/to/Console.php"
+
+Then, use static method `Console::log()` to dump variable to console. Easy!
 
 Dump an integer:
 
