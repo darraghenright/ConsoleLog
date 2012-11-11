@@ -2,7 +2,7 @@
 
 ##Description
 
-`Console` is a simple static console logger class for 
+`Console` is a simple static console logger class for
 dumping PHP variables to the console of your WebKit browser.
 
 You should dump be able to dump any PHP type:
@@ -16,7 +16,7 @@ You should dump be able to dump any PHP type:
 * object
 * resource
 
-Depending on the variable type `Console` will choose 
+Depending on the variable type `Console` will choose
 `var_export()` or `print_r()` where appropriate.
 
 ##Usage
@@ -34,7 +34,7 @@ Then, use static method `Console::log()` to dump variable to console. Easy!
 Dump an integer:
 
     $int = 42;
-    Console::log($int); 
+    Console::log($int);
 
 Output:
 
@@ -60,17 +60,25 @@ Output:
         [8] => 27
         [9] => 30
     )
-    
+
 Dump a resource:
 
     $resource = imagecreatetruecolor(600, 400);
     Console:log($resource);
-    
+
 Output:
 
     Resource id #1: gd
 
-You can optionally add a message; the originating 
+Console message types:
+
+    Console::log($text);    // javascript: console.log()
+    Console::info($text);   // javascript: console.info()
+    Console::debug($text);  // javascript: console.debug()
+    Console::warn($text);   // javascript: console.warn()
+    Console::error($text);  // javascript: console.error()
+
+You can optionally add a message; the originating
 file name and line number are included in the output:
 
     $now = new DateTime();
@@ -86,7 +94,7 @@ Output:
         [timezone] => Europe/Dublin
     )
 
-You can also toggle output at any point in your script. This 
+You can also toggle output at any point in your script. This
 is handy if you need to turn on/off logging while debugging:
 
     Console::on();
@@ -99,15 +107,14 @@ That's it! :)
 
 ##Support and limitations
 
-* Should be fine in Chrome/Safari (webkit)
-* Need to test FireBug functionality
-* Will not work in IE (IE does not support `console.log()`)
+* Works in Chrome/Safari (webkit), Firefox, IE 8-9
+* Will not work in IE 7 and older
 * Double quoted strings with interpolated variables will trigger a warning `$str = "Hello $name";`
 
 ##TODOs
 
 * Add tests
 * Add option to aggregate log messages while `Console::off()` is set
-* Show type 
+* Show type
 * More?
 
