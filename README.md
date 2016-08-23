@@ -23,18 +23,24 @@ Depending on the variable type `Console` will choose
 
 Import the Console class into your script:
 
-    require_once __DIR__ . '/path/to/Console.php'
+```php
+require_once __DIR__ . '/path/to/Console.php'
+```
 
 Or, set up `.htaccess` in your dev environment to auto append the class to scripts:
 
-    php_value auto_prepend_file "/path/to/Console.php"
+```php
+php_value auto_prepend_file "/path/to/Console.php"
+```
 
 Then, use static method `Console::log()` to dump variable to console. Easy!
 
 Dump an integer:
 
-    $int = 42;
-    Console::log($int); 
+```php
+$int = 42;
+Console::log($int); 
+```
 
 Output:
 
@@ -42,8 +48,10 @@ Output:
 
 Dump an array:
 
-    $threeTimesTable = range(3, 30, 3);
-    Console::log($threeTimesTable);
+```php
+$threeTimesTable = range(3, 30, 3);
+Console::log($threeTimesTable);
+```
 
 Output:
 
@@ -63,9 +71,11 @@ Output:
     
 Dump a resource:
 
-    $resource = imagecreatetruecolor(600, 400);
-    Console:log($resource);
-    
+```php
+$resource = imagecreatetruecolor(600, 400);
+Console:log($resource);
+```
+
 Output:
 
     Resource id #1: gd
@@ -73,8 +83,10 @@ Output:
 You can optionally add a message; the originating 
 file name and line number are included in the output:
 
-    $now = new DateTime();
-    Console::log($now, 'Dumping DateTime object $now to console');
+```php
+$now = new DateTime();
+Console::log($now, 'Dumping DateTime object $now to console');
+```
 
 Output:
 
@@ -89,11 +101,13 @@ Output:
 You can also toggle output at any point in your script. This 
 is handy if you need to turn on/off logging while debugging:
 
-    Console::on();
-    Console::log('foo'); // outputs: 'foo'
+```php
+Console::on();
+Console::log('foo'); // outputs: 'foo'
 
-    Console::off();
-    Console::log('bar'); // output is suppressed
+Console::off();
+Console::log('bar'); // output is suppressed
+```
 
 That's it! :)
 
@@ -110,4 +124,3 @@ That's it! :)
 * Add option to aggregate log messages while `Console::off()` is set
 * Show type 
 * More?
-
